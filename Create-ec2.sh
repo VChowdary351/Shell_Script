@@ -8,7 +8,7 @@ SECURITY_GROUP_ID=sg-01078218058c8212f
 
 for i in ${NAMES[@]}
 do 
-    if {{ $i == "mongodb" || $i == "mysql" }}
+    if {[ $i == "mongodb" || $i == "mysql" ]}
     then 
         INSTANCE_TYPE="t3.medium"
     else
@@ -17,5 +17,5 @@ do
     echo "creating $i instance"
     aws ec2 run-instances --image-id $IMAGE_ID --instance-type $INSTANCE_TYPE --key-name MyKeyPair --security-group-ids $SECURITY_GROUP_ID 
 
-    
+
 done
